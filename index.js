@@ -10,16 +10,13 @@ function largestSubarraySum(arr) {
         let workingSum
 
         // Only iterate over remaining 
-        arr.slice(ind1 + 1).forEach((_, ind2) => {
-            debugger
-            if (ind1 !== ind2 && ind2 > ind1) {
-                workingSlice = arr.slice(ind1, ind2 + 1)
-                workingSum = workingSlice.reduce((sum, cur) => sum + cur, 0)
-                console.log(workingSlice, ind1, ind2)
-                if (workingSum > highestSum) {
-                    highestSum = workingSum
-                    greatestSlice = workingSlice
-                }
+        arr.forEach((_, ind2) =>{
+            workingSlice = arr.slice(ind2 - ind1, ind2 + ind1)
+            workingSum = workingSlice.reduce((sum, cur) => sum + cur, 0)
+            console.log(workingSlice, ind1, ind2)
+            if (workingSum > highestSum) {
+                highestSum = workingSum
+                greatestSlice = workingSlice
             }
         })
     })
