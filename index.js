@@ -1,10 +1,17 @@
 function largestSubarraySum(arr) {
-    let highestSum = 0
+    // Highest sum is intialized to total for all array elems, instead of 0,
+    // setting to 0 would be incorrect if result was a negative number
+    let highestSum = arr.reduce((sum, cur) => sum + cur, 0)
     let greatestSlice
-    arr.forEach((elem1, ind1) => {
+
+    // Elems are not needed in forEach, underscore represents an unused declaration
+    arr.forEach((_, ind1) => {
         let workingSlice = []
         let workingSum
-        arr.forEach((elem2, ind2) => {
+
+        // Only iterate over remaining 
+        arr.slice(ind1 + 1).forEach((_, ind2) => {
+            debugger
             if (ind1 !== ind2 && ind2 > ind1) {
                 workingSlice = arr.slice(ind1, ind2 + 1)
                 workingSum = workingSlice.reduce((sum, cur) => sum + cur, 0)
@@ -19,6 +26,6 @@ function largestSubarraySum(arr) {
     return highestSum
 }
 
-let array = [1, -1, 5, 3, -7, 4, 5, 6, -100, 4]
+// let array = [1, -1, 5, 3, -7, 4, 5, 6, -100, 4]
 
 largestSubarraySum(array)
